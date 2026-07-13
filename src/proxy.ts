@@ -9,9 +9,15 @@ export default async function proxy(req: NextRequest) {
     const userIsLogedIn : boolean = Boolean(session)
     const currentUrl = req.nextUrl.pathname
     if ((currentUrl === "/register" || currentUrl === "/") && userIsLogedIn == true) {
-        return NextResponse.redirect(new URL("/profile", req.nextUrl));
+        return NextResponse.redirect(new URL("/admin", req.nextUrl));
     }
     if (currentUrl === "/profile" && userIsLogedIn != true) {
+        return NextResponse.redirect(new URL("/", req.nextUrl));
+    }
+    if (currentUrl === "/admin" && userIsLogedIn != true) {
+        return NextResponse.redirect(new URL("/", req.nextUrl));
+    }
+    if (currentUrl.includes('/admin') && userIsLogedIn != true) {
         return NextResponse.redirect(new URL("/", req.nextUrl));
     }
     return NextResponse.next();

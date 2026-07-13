@@ -49,3 +49,25 @@ model User {
 
   @@map("users")
 }
+
+
+model Wallet {
+  id String @id @default(cuid())
+  name String
+  balance Float
+  currency String @default("IQD")
+  userId String @map("user_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Transection {
+  id String @id @default(cuid())
+  amount Float
+  descrption String?
+  type String
+  userId String @map("user_id")
+  walletId String @map("wallet_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
