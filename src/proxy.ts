@@ -24,5 +24,13 @@ export default async function proxy(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/", "/register", "/profile"]
+    matcher: [
+        "/", 
+        "/register", 
+        "/admin/profile", 
+        "/admin/transactions", 
+        "/admin/wallets",
+        "/admin",
+        "/admin/profile"
+    ]
 };
